@@ -1,0 +1,361 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  /* Custom colors start */
+  --color-sellzy-white: #ffffff;
+  --color-sellzy-black: #000000;
+
+  --color-light-bg: #f4f6f8;
+  --color-light-border: rgba(145, 158, 171, 0.32);
+  --color-light-border-strong: rgba(145, 158, 171, 0.48);
+  --color-light-divider: #dfe3e8;
+  --color-sellzy-teal: #088178;
+  /* Custom colors end */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-public-sans), sans-serif;
+  --font-mono: var(--font-geist-mono);
+  --font-urbanist: var(--font-urbanist), sans-serif;
+  --font-dm-sans: var(--font-dm-sans), sans-serif;
+
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+
+  --shadow-dark-z-24: 0px 24px 48px 0px rgba(0, 0, 0, 0.12);
+
+  --color-warning-lighter: #fff7cd;
+  --color-warning-dark: #b78103;
+  --color-warning-darker: #7a4f01;
+
+  --color-error-lighter: #fcd1ca;
+  --color-error-light: #ef6168;
+  --color-error: #cb0233;
+  --color-error-dark: #ae013c;
+  --color-error-darker: #920140;
+
+  --color-success-lighter: #e9fcd4;
+  --color-success-light: #aaf27f;
+  --color-success: #54d62c;
+  --color-success-dark: #229a16;
+  --color-success-darker: #08660d;
+
+  --color-info-lighter: #d0f2ff;
+  --color-info-light: #74caff;
+  --color-info: #1890ff;
+  --color-info-dark: #0c53b7;
+  --color-info-darker: #04297a;
+
+  --color-primary-darker: #04535c;
+  --color-primary-light: var(--primary-light);
+  --color-primary-dark: var(--primary-dark);
+  --color-warning: var(--warning);
+  --color-warning-light: var(--warning-light);
+  --color-icon-bg: var(--icon-bg);
+
+  --color-light-primary-text: #212529;
+  --color-light-secondary-text: #495057;
+  --color-light-disabled-text: #919eab;
+  --color-primary-lighter: #caf8e4;
+
+  --animate-fadeInDown: fadeInDown 700ms ease-in-out 0s 1 normal none running;
+  --animate-fadeInUp: fadeInUp 700ms ease-in-out 0s 1 normal none running;
+  --animate-marquee: marquee-animation 20s linear infinite;
+  --animate-bounce: bounce 1.4s infinite ease-in-out both;
+}
+
+@keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, -100%, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translateZ(0);
+  }
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 50px, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translateZ(0);
+  }
+}
+
+@keyframes marquee-animation {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes bounce {
+  0%,
+  80%,
+  100% {
+    transform: scale(0);
+  }
+  40% {
+    transform: scale(1);
+  }
+}
+
+:root {
+  --radius: 0.625rem;
+  --background: #ffffff;
+  --foreground: #212b36;
+  --card: #ffffff;
+  --card-foreground: #212b36;
+  --popover: #ffffff;
+  --popover-foreground: #212b36;
+  --primary: #05535c;
+  --primary-foreground: #ffffff;
+  --secondary: #3366ff;
+  --secondary-foreground: #ffffff;
+  --muted: #f9fafb;
+  --muted-foreground: #919eab;
+  --accent: #f9fafb;
+  --accent-foreground: #212b36;
+  --destructive: #ff4842;
+  --destructive-foreground: #ffffff;
+  --warning: #ffc107;
+  --warning-light: #ffe16a;
+  --primary-light: #078178;
+  --primary-dark: #005249;
+  --icon-bg: #c8fad6;
+  --border: rgba(145, 158, 171, 0.24);
+  --input: rgba(145, 158, 171, 0.24);
+  --ring: #919eab;
+  --chart-1: #05535c;
+  --chart-2: #3366ff;
+  --chart-3: #1890ff;
+  --chart-4: #54d62c;
+  --chart-5: #ffc107;
+  --sidebar: #ffffff;
+  --sidebar-foreground: #212b36;
+  --sidebar-primary: #05535c;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #f9fafb;
+  --sidebar-accent-foreground: #212b36;
+  --sidebar-border: rgba(145, 158, 171, 0.24);
+  --sidebar-ring: #919eab;
+}
+
+.dark {
+  --background: #161c24;
+  --foreground: #ffffff;
+  --card: #212b36;
+  --card-foreground: #ffffff;
+  --popover: #212b36;
+  --popover-foreground: #ffffff;
+  --primary: #05535c;
+  --primary-foreground: #ffffff;
+  --secondary: #3366ff;
+  --secondary-foreground: #ffffff;
+  --muted: #212b36;
+  --muted-foreground: #637381;
+  --accent: #212b36;
+  --accent-foreground: #ffffff;
+  --destructive: #ff4842;
+  --destructive-foreground: #ffffff;
+  --border: rgba(145, 158, 171, 0.24);
+  --input: rgba(145, 158, 171, 0.24);
+  --ring: #637381;
+  --chart-1: #007b55;
+  --chart-2: #1939b7;
+  --chart-3: #0c53b7;
+  --chart-4: #229a16;
+  --chart-5: #ffc107;
+  --sidebar: #161c24;
+  --sidebar-foreground: #ffffff;
+  --sidebar-primary: #05535c;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #212b36;
+  --sidebar-accent-foreground: #ffffff;
+  --sidebar-border: rgba(145, 158, 171, 0.24);
+  --sidebar-ring: #637381;
+}
+
+@layer base {
+  /* Clip (not hide) sideways overflow so slide-in animations and off-canvas elements can never widen the mobile layout viewport (iOS ignores overflow-x: hidden on body). */
+  html,
+  body {
+    overflow-x: clip;
+  }
+  button {
+    @apply cursor-pointer;
+  }
+  .topHeaderNavBtn {
+    @apply text-sm font-thin text-primary-foreground/90 relative px-3 2xl:px-6 whitespace-nowrap border-r border-r-primary-foreground/50 hover:text-primary-foreground ease-in-out transition-all duration-300;
+  }
+  .hoverEffect {
+    @apply transition-all ease-in-out duration-300;
+  }
+
+  /* Main Menu */
+  .main-menu > ul {
+    @apply hidden xl:flex items-center justify-center;
+  }
+
+  .main-menu > ul > li {
+    @apply relative;
+  }
+
+  .main-menu > ul > li > a {
+    @apply 2xl:px-6 py-6 px-4 inline-flex items-center justify-center gap-x-2 font-semibold hover:text-primary text-base leading-6 text-foreground;
+  }
+
+  .main-menu > ul > li:hover > a {
+    @apply text-primary;
+  }
+
+  .main-menu ul li.has-sub-item {
+    @apply relative;
+  }
+
+  .main-menu ul li.has-sub-item:has(.mega-menu) {
+    @apply static;
+  }
+
+  .main-menu ul li.has-sub-item:hover > ul {
+    @apply opacity-100 visible translate-y-0;
+  }
+
+  .main-menu ul li > ul {
+    @apply absolute left-0 top-full w-[250px] bg-white rounded-lg opacity-0 invisible transition-all duration-300 transform translate-y-4 z-50 shadow-dark-z-24 py-3;
+  }
+
+  .main-menu ul li ul li a {
+    @apply text-sm leading-[22px] hover:text-primary py-3 px-4 flex items-center justify-between text-foreground;
+  }
+
+  .main-menu ul li ul li a i {
+    @apply text-xl text-foreground transform -rotate-90;
+  }
+
+  .main-menu ul li > .mega-menu ul li a {
+    @apply p-0;
+  }
+
+  .main-menu ul li > .mega-menu {
+    @apply absolute left-1/2 -translate-x-1/2 top-full w-full bg-white rounded-lg opacity-0 invisible transition-all duration-300 transform translate-y-4 z-50 shadow-dark-z-24;
+  }
+
+  .main-menu ul li.has-sub-item:hover > .mega-menu {
+    @apply opacity-100 visible translate-y-0;
+  }
+
+  .main-menu ul li ul li ul {
+    @apply left-full top-0;
+  }
+
+  .main-menu ul li a.active {
+    @apply text-primary;
+  }
+
+  /* Mobile Menu Styles */
+  .mobile-menu > ul {
+    @apply flex flex-col px-2 divide-y divide-border;
+  }
+
+  .mobile-menu ul li {
+    @apply py-2;
+  }
+
+  .mobile-menu ul li a {
+    @apply text-sm leading-[22px];
+  }
+
+  .mobile-menu ul li a.active {
+    @apply text-primary;
+  }
+
+  /* Preloader */
+  .preloader {
+    @apply fixed top-0 left-0 w-full h-full z-999999 opacity-100 visible pointer-events-none bg-white transition-all duration-500 ease-in-out;
+  }
+
+  .preloader.loaded {
+    @apply opacity-0 invisible;
+  }
+
+  .preloader .pxl-loader-spinner {
+    @apply absolute left-0 right-0 mx-auto top-1/2 -translate-y-1/2 w-[70px] text-center;
+  }
+
+  .preloader .pxl-loader-spinner > div {
+    @apply animate-bounce inline-block w-[18px] h-[18px] bg-primary rounded-full;
+  }
+
+  .preloader .pxl-loader-spinner .pxl-loader-bounce1 {
+    animation-delay: -0.32s;
+  }
+
+  .preloader .pxl-loader-spinner .pxl-loader-bounce2 {
+    animation-delay: -0.16s;
+  }
+}
+
+/* Custom scrollbar for filter sidebars */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #cbd5e1;
+  border-radius: 10px;
+}
+
+/* Hide scrollbar but keep functionality */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
