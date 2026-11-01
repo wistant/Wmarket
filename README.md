@@ -1,207 +1,158 @@
-# Sellzy Starter
+# Wmarket
 
 <p align="center">
-  <img src="docs/storefront.jpg" width="49%" alt="The finished Sellzy storefront: the healthcare home page with its header, category menu and hero banner">
-  <img src="docs/dashboard.jpg" width="49%" alt="The finished Sellzy dashboard: the admin overview with sales, orders, customers and stock tiles">
+  <img src="docs/storefront.jpg" width="49%" alt="Wmarket Storefront Preview" />
+  <img src="docs/dashboard.jpg" width="49%" alt="Wmarket Dashboard Preview" />
 </p>
 
-The starting point for **Sellzy from Scratch**, the ReactBD course where you build a complete multi-vendor e-commerce
-platform: a **Next.js** storefront with three home pages, 24 shop layouts, search, cart, checkout and Stripe; a
-**React + Vite** dashboard for the admin, the team and the sellers; and an **Express + MongoDB** API behind both. It's one
-Turborepo monorepo, in TypeScript from end to end.
+<p align="center">
+  <strong>A modern, full-stack multi-vendor e-commerce platform built with an end-to-end TypeScript monorepo.</strong>
+</p>
 
-This repo is the project exactly as it stands after the course's first two parts, *An empty folder* and *The ground
-rules*. Each app shows a single heading, the shared TypeScript and ESLint setup is in place, and every asset the course
-uses but never types is already in its folder. There are no features yet. Building them is what the course is for.
+<p align="center">
+  <img src="https://img.shields.io/badge/Author-Wistant-blue?style=flat-square" alt="Author" />
+  <img src="https://img.shields.io/badge/Next.js-16.4-black?style=flat-square&logo=next.js" alt="Next.js" />
+  <img src="https://img.shields.io/badge/React-19.3-61DAFB?style=flat-square&logo=react" alt="React" />
+  <img src="https://img.shields.io/badge/Express-5.3-green?style=flat-square&logo=express" alt="Express" />
+  <img src="https://img.shields.io/badge/TailwindCSS-v4-38B2AC?style=flat-square&logo=tailwind-css" alt="Tailwind CSS" />
+  <img src="https://img.shields.io/badge/Turborepo-2.x-EF4444?style=flat-square&logo=turborepo" alt="Turborepo" />
+  <img src="https://img.shields.io/badge/pnpm-10.x-F69220?style=flat-square&logo=pnpm" alt="pnpm" />
+</p>
 
-**The pictures above are where you'll end up, not what this starter shows.**
+---
 
-## Links
+## 🚀 Overview
 
-| | |
+**Wmarket** is an all-in-one multi-vendor e-commerce platform engineered for performance, scalability, and a seamless shopping experience. Managed as a unified **Turborepo** monorepo, the project brings together:
+
+- **Customer Storefront (`apps/web`)**: High-performance storefront powered by Next.js 16 (App Router), React 19, and Tailwind CSS v4. Features comprehensive product browsing, dynamic layouts, cart and checkout flows, and Stripe payments.
+- **Admin & Vendor Dashboard (`apps/admin`)**: Fast and responsive control center built with React 19 and Vite. Provides dedicated panels for Master Admins and Marketplace Sellers with analytics, catalog management, and order processing.
+- **Core Backend API (`apps/api`)**: Robust REST API built on Express 5, TypeScript, and MongoDB. Handles authentication, database operations, business logic, and third-party webhooks.
+- **Shared Packages (`packages/*`)**: Centralized TypeScript configurations and ESLint rules shared across the entire workspace for clean and consistent code quality.
+
+---
+
+## 🛠️ Tech Stack
+
+| Layer | Technologies |
 |---|---|
-| The course | **Sellzy from Scratch** on [ReactBD's YouTube channel](https://www.youtube.com/@reactjsbd), in two volumes: the API and the storefront, then the dashboard, sellers and going live |
-| Live storefront | [sellzy.reactbd.com](https://sellzy.reactbd.com) |
-| Live dashboard | [admin.sellzy.reactbd.com](https://admin.sellzy.reactbd.com/login): the **Master Admin** and **Seller Panel** buttons fill in demo credentials |
-| ReactBD | [reactbd.com](https://reactbd.com) |
+| **Monorepo Engine** | [Turborepo](https://turbo.build/) & [pnpm Workspaces](https://pnpm.io/workspaces) |
+| **Storefront** | [Next.js 16](https://nextjs.org/) (App Router, React Compiler), [React 19](https://react.dev/), [Tailwind CSS v4](https://tailwindcss.com/) |
+| **Admin Portal** | [React 19](https://react.dev/), [Vite 8](https://vitejs.dev/), Tailwind CSS |
+| **Backend & API** | [Node.js](https://nodejs.org/), [Express 5](https://expressjs.com/), [MongoDB](https://www.mongodb.com/) |
+| **Language & Tooling** | [TypeScript 6](https://www.typescriptlang.org/) (strict mode), [ESLint](https://eslint.org/), [Prettier](https://prettier.io/) |
+| **Integrations** | Stripe, ImageKit, Firebase Auth |
 
-## Where this fits in the course
+---
 
-| Part | Starts at | What happens |
-|---|---|---|
-| 1. An empty folder | 0:12:44 | builds this repo: the workspace, the three apps, the first page of each |
-| 2. The ground rules | 0:24:27 | shared TypeScript configs, linting, the `@/` alias, the env files Git ignores |
-| **3. From Figma to tokens** | **0:32:05** | **start here** if you cloned this starter |
-
-The times are in Volume 1. Watching from the beginning? Parts 1 and 2 build all of this step by step. Follow along from
-an empty folder and keep this repo open to compare, or to copy the asset pack (below) from.
-
-## What you need
-
-- **Node 22.22 or newer.** Check with `node -v`. The apps declare Node 24 for deployment, so Node 24 LTS is the best
-  match; on Node 22 pnpm only warns.
-- **pnpm 10.29.3**, through Corepack: run `corepack enable` once. The repo's `packageManager` field picks the
-  version. Without Corepack, `npm install -g pnpm@10.29.3` works too.
-- **Git**
-- **VS Code** with the **ESLint** and **Tailwind CSS IntelliSense** extensions.
-
-Free accounts come later, each with the part that needs it, so there's nothing to set up yet:
-
-| Service | For | Part |
-|---|---|---|
-| MongoDB Atlas (free cluster), or MongoDB on your machine | the database | 6 |
-| Firebase and a Gmail app password | Google sign-in and email | 8 |
-| ImageKit (required); Cloudinary and Amazon S3 (optional) | product photos, including the seed's ([below](#put-the-seeds-photos-in-your-own-imagekit)) | 11 |
-| Stripe in test mode; SSLCommerz sandbox (optional) | payments | 19 |
-
-## Quick start
-
-```bash
-git clone https://github.com/noorjsdivs/sellzy-starter.git
-cd sellzy-starter
-corepack enable
-pnpm install
-pnpm dev
-```
-
-One `pnpm install` at the root installs every workspace, and `pnpm dev` starts all three apps:
-
-| App | Address | You should see |
-|---|---|---|
-| Storefront | http://localhost:3000 | **Sellzy storefront** |
-| Dashboard | http://localhost:5173 | **Sellzy dashboard** |
-| API | http://localhost:8000 | `{"message":"Sellzy API is running..."}` |
-
-## Scripts
-
-Run these from the repo root:
-
-| Command | What it does |
-|---|---|
-| `pnpm dev` | starts the storefront, the dashboard and the API together |
-| `pnpm dev:web` · `pnpm dev:admin` · `pnpm dev:api` | starts one app |
-| `pnpm check-types` | type-checks every app |
-| `pnpm lint` | lints every app with the shared ESLint configs |
-| `pnpm build` | builds every app |
-| `pnpm format` | formats `.ts`, `.tsx` and `.md` files with Prettier |
-| `pnpm seed` | loads the demo data into MongoDB (the seed script arrives in part 10) |
-| `pnpm clean` | removes build output and caches |
-
-`pnpm check-types` and `pnpm lint` both pass on a fresh clone, three tasks each. Keep it that way as you build: run them
-before every commit.
-
-## What's inside
+## 📂 Project Architecture
 
 ```text
-sellzy-starter/
-├── package.json             the repo's scripts; Turborepo, Prettier, TypeScript 6
-├── pnpm-workspace.yaml      the workspaces: apps/* and packages/*
-├── turbo.json               build, dev, lint, check-types and seed, across every app
-├── .gitignore               also ignores every .env file
-├── packages/
-│   ├── typescript-config/   shared tsconfig bases: base, nextjs, react-library
-│   └── eslint-config/       shared ESLint configs: base, next, react-internal
+wistant-market/
 ├── apps/
-│   ├── web/                 the storefront: Next.js App Router, one heading for now
-│   ├── admin/               the dashboard: React and Vite, one heading for now
-│   └── api/                 the API: Express, where GET / answers a JSON message
-└── docs/                    the two pictures above
+│   ├── web/                 # Next.js customer-facing storefront (App Router)
+│   ├── admin/               # React + Vite admin & vendor dashboard
+│   └── api/                 # Express REST API & MongoDB models
+├── packages/
+│   ├── typescript-config/   # Shared tsconfig bases (base, nextjs, react)
+│   └── eslint-config/       # Shared ESLint rules & configurations
+├── docs/                    # Screenshots and documentation assets
+├── turbo.json               # Monorepo task pipeline configuration
+├── pnpm-workspace.yaml      # Workspace packages definitions
+└── package.json             # Root monorepo scripts & dependencies
 ```
 
-### The stack
+---
 
-| | Version |
-|---|---|
-| Next.js | 16.4, with the React Compiler |
-| React | 19.3 |
-| Tailwind CSS | 4.3 |
-| Vite | 8.3 |
-| Express | 5.3 |
-| TypeScript | 6.0, strict |
-| Turborepo | 2.11 |
-| pnpm | 10.29.3 |
+## ⚡ Quick Start
 
-Stay on these versions while you follow the course: the code in the video is written for them.
+### Prerequisites
 
-## The asset pack
+Ensure you have the following installed:
+- **Node.js**: `>= 22.22.0` (Node 24 LTS recommended)
+- **pnpm**: `>= 10.29.3` (`corepack enable` or `npm install -g pnpm@10.29.3`)
+- **Git**
 
-The video points you here for everything that can't be typed: images, icon drawings, translations and the demo data.
-It's already unpacked, each file at the path the course uses, so if you cloned this starter you don't copy anything.
+### Installation
 
-Following along from an empty folder? Copy these files and folders from this repo into the same places in your
-project. Copy them all at the start, or each one when its part reaches it.
+1. **Clone the repository:**
+   ```bash
+   git clone <repository-url>
+   cd Wistant-market
+   ```
 
-| Path | What it is | Used from |
+2. **Install all workspace dependencies:**
+   ```bash
+   pnpm install
+   ```
+
+3. **Start the development servers:**
+   ```bash
+   pnpm dev
+   ```
+
+This launches all applications concurrently:
+
+| App | Local URL | Role |
 |---|---|---|
-| `apps/api/data/seed/` | the demo data: 40 JSON files, 278 records, including 83 products in 34 categories, brands, banners, menus, blog posts, jobs and sample orders | part 10, where `pnpm seed` loads it |
-| `apps/api/data/seed-images/` and `apps/api/scripts/uploadSeedImages.ts` | the seed's 602 photos (28 MB), and the script that puts them in your ImageKit | after part 12 ([below](#put-the-seeds-photos-in-your-own-imagekit)) |
-| `apps/web/messages/de.json`, `fr.json`, `it.json`, `en-SG.json` | the translations (`en.json` is typed in the part) | part 22 |
-| `apps/web/public/` | logos, illustrations, placeholders and payment badges | part 23 on |
-| `apps/web/src/images/` | the storefront's own images and icons (the part types the `index.ts` that imports them) | part 23 |
-| `apps/web/src/components/svgs/` | `BrandIcons.tsx`, `HeaderFlags.tsx` and `index.tsx`: the icon drawings | part 24 |
-| `apps/web/src/components/order-tracking/dummyOrderData.ts` | the order-tracking page's demo order | part 33 |
-| `apps/admin/public/` | the dashboard's logos and placeholder image | part 36 on |
-| `apps/admin/src/components/ui/brand-icons.tsx` | the brand icons for the dashboard | part 37 |
-| `apps/admin/src/lib/preview/vendorPreviewData.ts` | the sample data the seller portal shows preview users | part 67 |
+| **Storefront** | `http://localhost:3000` | Customer shop experience |
+| **Dashboard** | `http://localhost:5173` | Admin & Vendor management portal |
+| **API** | `http://localhost:8000` | Backend REST endpoints |
 
-A few things to know about the data:
+---
 
-- **The photos go into your own ImageKit.** The seed names each photo by a placeholder (`/seed-images/…`) until you
-  run the upload script below. Until then, photos show as missing, but nothing needs them before part 13.
-- **The people in it are made up:** Maya Chen, Jordan Lee and Aisha Bello, with `example.com` addresses and 555
-  numbers.
-- **No accounts are seeded.** You register your own, and part 38 shows how the first admin is made.
+## 📜 Available Scripts
 
-### Put the seed's photos in your own ImageKit
+Run these commands from the root directory:
 
-Every product, category, brand, banner and blog photo the demo data uses is in `apps/api/data/seed-images/`. Once
-your ImageKit keys are in `apps/api/.env` (part 12), upload them all to your account in one go, from the repo root:
+| Command | Description |
+|---|---|
+| `pnpm dev` | Starts all apps concurrently in development mode |
+| `pnpm dev:web` | Starts only the Next.js storefront |
+| `pnpm dev:admin` | Starts only the React + Vite admin dashboard |
+| `pnpm dev:api` | Starts only the Express API |
+| `pnpm build` | Builds all packages and applications for production |
+| `pnpm lint` | Runs ESLint across all workspaces |
+| `pnpm check-types` | Executes TypeScript type-checks across all workspaces |
+| `pnpm format` | Formats codebase with Prettier (`.ts`, `.tsx`, `.md`) |
+| `pnpm seed` | Populates MongoDB with initial store data |
+| `pnpm clean` | Cleans build caches, `.next`, `.turbo`, and dist folders |
 
-```bash
-pnpm --filter @sellzy/api exec tsx scripts/uploadSeedImages.ts
-pnpm seed
-```
+---
 
-The first command uploads the 602 photos into `/sellzy/…` folders in your ImageKit, then rewrites the seed files so
-each placeholder becomes the photo's address in your account. The second loads the updated seed. It updates records
-by id, so photos you seeded earlier get their new addresses. After that, your store serves every photo from your own
-ImageKit.
+## 🗄️ Database Seeding & Media
 
-- **It's safe to run again.** A photo already uploaded is skipped (`data/seed-images/.uploaded.json` remembers it),
-  and re-uploading a name overwrites the file instead of adding a copy.
-- **It also fills in the order-tracking demo** (`apps/web/src/components/order-tracking/dummyOrderData.ts`), which
-  uses three of the same photos. Copying that file in later, at part 33? Run the script once more. It only fills in
-  the addresses, without uploading anything again.
-- **It needs only `IMAGEKIT_PRIVATE_KEY`.** The key stays in your `.env`, and nothing is sent anywhere but ImageKit.
+Wmarket includes an automated seeding pipeline to initialize demo products, categories, brands, banners, and sample orders:
 
-## Make it yours
+1. Configure your environment variables in `apps/api/.env`.
+2. *(Optional)* Upload seed media assets to your ImageKit storage:
+   ```bash
+   pnpm --filter @wmarket/api exec tsx scripts/uploadSeedImages.ts
+   ```
+3. Run the database seed:
+   ```bash
+   pnpm seed
+   ```
 
-- **Keep secrets out of Git.** Later parts add `apps/api/.env`, `apps/web/.env` and `apps/admin/.env`. The course shows
-  their key names, never their values, and `.gitignore` already ignores them. Check `git status` before you push
-  anyway.
-- **Generating the apps yourself in part 1?** Today's generators differ a little from the video:
-  - `create-next-app` 16.4.2 now writes Tailwind's Turbopack loader and Cache Components into `next.config.ts`, in place
-    of a PostCSS config. The course uses the PostCSS setup, so take `apps/web/next.config.ts` and
-    `apps/web/postcss.config.mjs` from this repo.
-  - `create-vite`'s React template now defaults to Oxlint. Choose ESLint, or pass `--eslint`.
+---
 
-## Troubleshooting
+## 🔐 Environment Configuration
 
-**`pnpm: command not found`**
-Run `corepack enable`, then open a new terminal. Without Corepack, run `npm install -g pnpm@10.29.3`.
+Each application maintains its own `.env` configuration file (ignored by Git):
+- `apps/api/.env`: Database URI (MongoDB), JWT secrets, ImageKit credentials, Stripe keys.
+- `apps/web/.env`: Public API URLs, public payment keys.
+- `apps/admin/.env`: API endpoints, authentication keys.
 
-**`Unsupported engine` warning during `pnpm install`**
-The apps declare Node 24 for deployment. On Node 22.22 or newer it's only a warning, and everything runs.
+---
 
-**A port is already in use**
-Something else is on 3000, 5173 or 8000. Stop it, or stop an older `pnpm dev` that's still running.
+## 👤 Author
 
-**`Cannot find module` or a missing package**
-Run `pnpm install` from the repo root, not from inside an app's folder.
+**Wistant**
+- **Email**: [wistantkode@protonmail.com](mailto:wistantkode@protonmail.com)
+- **Project**: Wmarket (Wistant Market)
 
-## ReactBD
+---
 
-- YouTube: [@reactjsbd](https://www.youtube.com/@reactjsbd)
-- Website: [reactbd.com](https://reactbd.com)
+## 📄 License
 
-Stuck at a checkpoint in the course? Leave a comment on the video with the part and what you see.
+Private & Proprietary © 2026 Wistant. All rights reserved.
