@@ -12,6 +12,8 @@ import { errorHandler, notFound } from "./middleware/errorMiddleware.js";
 import { HttpError } from "./utils/httpError.js";
 import { specs } from "./config/swagger.js";
 
+// routes
+import authRoutes from "./routes/authRoutes.js"
 // Load env vars
 dotenv.config();
 
@@ -56,9 +58,9 @@ const allowedOrigins = [
   process.env.PRODUCTION_ADMIN_URL,
   process.env.PRODUCTION_CLIENT_URL,
   // Add production URLs - new domain
-  "https://sellzy.reactbd.com",
-  "https://admin.sellzy.reactbd.com",
-  "https://api.sellzy.reactbd.com",
+  "https://wmarket.wistant.dev",
+  "https://admin.wmarket.wistant.dev",
+  "https://api.wmarket.wistant.dev",
 
   // Add localhost for development
   "http://localhost:3000",
@@ -146,7 +148,8 @@ app.use((req, res, next) => {
       const sanitized = mongoSanitize.sanitize(req[reqKey]);
       try {
         // Try standard assignment first (works for body, params)
-        // @ts-ignore
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-expect-error
         req[reqKey] = sanitized;
       } catch (e) {
         // Fallback for read-only properties like req.query in Express 5
@@ -186,6 +189,20 @@ const apiLimiter = rateLimit({
 // Apply general limiter to /api
 app.use("/api/", apiLimiter);
 
+const authLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  limit: 50,
+  standardHeaders: "draft-7",
+  legacyHeaders: false,
+});
+
+const passwordResetLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  limit: 50,
+  standardHeaders: "draft-7",
+  legacyHeaders: false,
+});
+
 // Additional headers for Swagger UI in production
 app.use(
   "/api/docs",
@@ -195,6 +212,14 @@ app.use(
     next();
   },
 );
+
+// Routes
+// Apply stricter rate limiter to auth routes
+app.use(
+  ["/api/auth/forgot-password", "/api/auth/verify-otp", "/api/auth/reset-password"],
+  passwordResetLimiter,
+);
+app.use("/api/auth", authLimiter, authRoutes);
 
 // API Documentation
 app.use(
